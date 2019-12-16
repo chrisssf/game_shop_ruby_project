@@ -8,13 +8,19 @@ get '/products' do
   erb ( :"products/index" )
 end
 
+get '/products/new' do
+  # @products = Product.all()
+  @manufacturers = Manufacturer.all()
+  erb(:"products/new")
+end
 
 get '/products/:id' do
   @product = Product.find(params[:id].to_i)
   erb(:"products/show")
 end
 
-# get '/victims/:id' do
-#   @victim = Victim.find(params['id'].to_i)
-#   erb( :"victims/show" )
-# end
+post '/products' do
+  @product = Product.new(params)
+  @product.save()
+  erb(:"products/create")
+end

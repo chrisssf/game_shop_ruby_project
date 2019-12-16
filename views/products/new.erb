@@ -1,0 +1,31 @@
+<form class="" action="/products" method="post">
+  <label for="name">Name: </label>
+  <input class="" type="text" name="name" id="name">
+  <br>
+  <label for="description">Description: </label>
+  <input class="form_margin" type="text" name="description" id="description">
+  <br>
+  <label for="stock-quantity">Stock Quantity: </label>
+  <input class="form_margin" type="number" min="0" name="stock_quantity" id="stock-quantity">
+  <br>
+  <label for="buying-cost">Buying Cost: </label>
+  <input class="form_margin" type="number" min="0" step="any" name="buying_cost" id="buying-cost">
+  <br>
+  <label for="selling-price">Selling Price: </label>
+  <input class="form_margin" type="number" min="0" step="any" name="selling_price" id="selling-price">
+  <br>
+  <label for="genre">Genre: </label>
+  <input class="form_margin" type="text" name="genre" id="genre">
+  <br>
+  <label for="type">Type: </label>
+  <input class="form_margin" type="text" name="type" id="type">
+  <br>
+  <label for="manufacturer-select">Select Manufacturer: </label>
+  <select class="form_margin" name="manufacturers_id" id="manufacturer-select">
+    <% @manufacturers.each do |manufacturer| %>
+    <option value="<%= manufacturer.id %>"><%= manufacturer.name.capitalize %></option>
+    <% end %>
+  </select>
+  <br>
+  <input class ="button" type="submit" value="Add Product">
+</form>
