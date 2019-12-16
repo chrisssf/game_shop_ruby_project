@@ -8,7 +8,7 @@ class Product
 
   def initialize(options)
     @id = options["id"].to_i if options["id"]
-    @name = options["name"]
+    @name = options["name"].downcase
     @description = options["description"]
     @stock_quantity = options["stock_quantity"].to_i
     @buying_cost = options["buying_cost"].to_f
@@ -101,6 +101,15 @@ class Product
     elsif @stock_quantity <= 5
       return " - Low Stock!"
     end
+  end
+
+  def self.search_products(search_term)
+    search = '%' + search_term + '%'
+    sql = "SELECT * FROM products
+    WHERE name LIKE $1"
+    values = [search]
+    results = SqlRunner.run(sql, values)
+    return results.map { |product| Product.new(product) }
   end
 
 end

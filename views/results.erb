@@ -1,0 +1,36 @@
+<p>stuff</p>
+
+<p>Searched for: <b><%= @search_term %></b></p>
+
+<table>
+  <tr>
+    <th>Product ID</th>
+    <th>Product Name</th>
+    <th>Product Description</th>
+    <th>Stock Quantity</th>
+    <th>Buying Cost</th>
+    <th>Selling Price</th>
+    <th>Genre</th>
+    <th>Type</th>
+    <th>Manufacturer</th>
+  </tr>
+
+  <% @products.each do |product| %>
+    <tr>
+      <td><%= product.id %></td>
+      <td><a href="/products/<%= product.id %>"><%= product.name %></a> </td>
+      <td><%= product.description %></td>
+      <td><%= product.stock_quantity %><%= product.stock_status %></td>
+      <td>£ <%= '%.2f' % product.buying_cost %></td>
+      <td>£ <%= '%.2f' % product.selling_price %></td>
+      <td><%= product.genre %></td>
+      <td><%= product.type %></td>
+      <td><%= product.manufacturers_name %></td>
+      <td>
+        <form class="" action="/products/<%= product.id %>/edit">
+          <input type="submit" value="Edit this Product">
+        </form>
+      </td>
+    </tr>
+    <% end %>
+</table>
