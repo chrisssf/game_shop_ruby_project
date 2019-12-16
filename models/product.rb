@@ -1,4 +1,5 @@
 require_relative('../db/sql_runner')
+require_relative('./manufacturer')
 
 class Product
 
@@ -86,6 +87,20 @@ class Product
     result = SqlRunner.run(sql, values).first
     product = Product.new(result)
     return product
+  end
+
+  def manufacturers_name()
+    manufacturer = Manufacturer.find(@manufacturers_id)
+    manufacturer_name = manufacturer.name
+    return manufacturer_name
+  end
+
+  def stock_status()
+    if @stock_quantity == 0
+      return " - Out of Stock!"
+    elsif @stock_quantity <= 5
+      return " - Low Stock!"
+    end
   end
 
 end
