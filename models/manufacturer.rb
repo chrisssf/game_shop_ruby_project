@@ -8,7 +8,7 @@ attr_accessor :name, :country, :description
 
   def initialize(options)
     @id = options["id"].to_i if options["id"]
-    @name = options["name"]
+    @name = options["name"].downcase
     @country = options["country"]
     @description = options["description"]
   end
@@ -72,6 +72,15 @@ attr_accessor :name, :country, :description
     result = SqlRunner.run(sql, values).first
     manufacturer = Manufacturer.new(result)
     return manufacturer
+  end
+
+  def self.search_manufacturers(search_term)
+    search = '%' + search_term + '%'
+    sql = "SELECT * FROM manufacturers
+    WHERE name LIKE $1"
+    values = [search]
+    results = SqlRunner.run(sql, values)
+    return results.map { |manufacturer| Manufacturer.new(manufacturer) }
   end
 
 
