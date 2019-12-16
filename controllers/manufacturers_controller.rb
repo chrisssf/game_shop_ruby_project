@@ -24,3 +24,14 @@ post '/manufacturers' do
   @manufacturer.save()
   erb(:"manufacturers/create")
 end
+
+get '/manufacturers/:id/edit' do
+  @manufacturer = Manufacturer.find(params[:id].to_i)
+  # @manufacturers = Manufacturer.all()
+  erb(:"manufacturers/edit")
+end
+
+post '/manufacturers/:id' do
+  Manufacturer.new(params).update
+  redirect to '/manufacturers'
+end
