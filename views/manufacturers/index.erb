@@ -1,0 +1,7 @@
+<h1>Here is a list of manufacturers</h1>
+
+<div class="">
+  <% @manufacturers.each do |manufacturer| %>
+    <p><a href="/manufacturers/<%= manufacturer.id %>"><%= manufacturer.name %></a></p>
+  <% end %>
+</div>

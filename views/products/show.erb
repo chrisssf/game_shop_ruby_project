@@ -1,0 +1,14 @@
+<div class="">
+  <h1><%= @product.name %></h1>
+  <p>Product ID: <%= @product.id %></p>
+  <p>Description: <%= @product.description %></p>
+  <p>Number in Stock: <%= @product.stock_quantity %> Units</p>
+  <p>Buying Cost: £<%= '%.2f' % @product.buying_cost %></p>
+  <p>Selling Price: £<%= '%.2f' % @product.selling_price %></p>
+  <p>Genre: <%= @product.genre %></p>
+  <p>Type: <%= @product.type %></p>
+  <p>Manufacturer_id: <%= @product.manufacturers_id %></p>
+
+  <a href="/products/<%= @product.id %>/edit">Edit product details</a>
+
+</div>
