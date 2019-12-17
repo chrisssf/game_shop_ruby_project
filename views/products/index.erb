@@ -5,6 +5,17 @@
   <% end %>
 </div>
 
+<p>filter by manufacturer</p>
+
+<form class="" action="/results/filtered-products" method="post">
+  <select class="form_margin" name="manufacturers_id" id="manufacturer-select">
+    <% @manufacturers.each do |manufacturer| %>
+    <option value="<%= manufacturer.id %>"><%= manufacturer.name %></option>
+    <% end %>
+  </select>
+  <input type="submit" value="Find Products by this Manufacturer">
+</form>
+
 <table>
   <tr>
     <th>Product ID</th>

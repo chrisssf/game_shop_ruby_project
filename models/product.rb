@@ -112,4 +112,13 @@ class Product
     return results.map { |product| Product.new(product) }
   end
 
+  def self.filter_manufacturers(manufacturer_id)
+    search = manufacturer_id.to_i
+    sql = "SELECT * FROM products
+    WHERE manufacturers_id = $1"
+    values = [search]
+    results = SqlRunner.run(sql, values)
+    return results.map { |product| Product.new(product) }
+  end
+
 end

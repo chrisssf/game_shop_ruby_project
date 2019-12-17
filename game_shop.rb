@@ -16,6 +16,15 @@ post '/results/products' do
   erb(:"products/results")
 end
 
+post '/results/filtered-products' do
+  @products = Product.filter_manufacturers(params[:manufacturers_id])
+  product = @products.first
+  if product
+    @search_term = product.manufacturers_name()
+  end
+  erb(:"products/results")
+end
+
 post '/results/manufacturers' do
   @search_term = params[:search_term]
   @manufacturers = Manufacturer.search_manufacturers(params[:search_term])
