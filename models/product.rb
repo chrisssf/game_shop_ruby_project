@@ -104,7 +104,7 @@ class Product
   end
 
   def self.search_products(search_term)
-    search = '%' + search_term + '%'
+    search = ('%' + search_term + '%').downcase
     sql = "SELECT * FROM products
     WHERE name LIKE $1"
     values = [search]
@@ -119,6 +119,11 @@ class Product
     values = [search]
     results = SqlRunner.run(sql, values)
     return results.map { |product| Product.new(product) }
+  end
+
+  def markup()
+    markup = @selling_price - @buying_cost
+    return markup
   end
 
 end

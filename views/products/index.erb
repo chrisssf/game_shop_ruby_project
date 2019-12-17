@@ -1,20 +1,15 @@
 <h1>Here is a list of products</h1>
-<div class="">
-  <% @products.each do |product| %>
-    <p><a href="/products/<%= product.id %>"><%= product.name %></a></p>
-  <% end %>
-</div>
 
 <p>filter by manufacturer</p>
 
-<form class="" action="/results/filtered-products" method="post">
+<form class="" action="/filtered-products/results" method="post">
   <select class="form_margin" name="manufacturers_id" id="manufacturer-select">
     <% @manufacturers.each do |manufacturer| %>
     <option value="<%= manufacturer.id %>"><%= manufacturer.name %></option>
     <% end %>
   </select>
   <input type="submit" value="Find Products by this Manufacturer">
-</form>
+</form><br><br><br>
 
 <table>
   <tr>
@@ -24,6 +19,7 @@
     <th>Stock Quantity</th>
     <th>Buying Cost</th>
     <th>Selling Price</th>
+    <th>Markup</th>
     <th>Genre</th>
     <th>Type</th>
     <th>Manufacturer</th>
@@ -37,6 +33,7 @@
       <td><%= product.stock_quantity %><%= product.stock_status %></td>
       <td>£ <%= '%.2f' % product.buying_cost %></td>
       <td>£ <%= '%.2f' % product.selling_price %></td>
+      <td>£ <%= '%.2f' % product.markup %></td>
       <td><%= product.genre %></td>
       <td><%= product.type %></td>
       <td><%= product.manufacturers_name %></td>

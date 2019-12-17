@@ -14,6 +14,12 @@ get '/manufacturers/new' do
   erb(:"manufacturers/new")
 end
 
+post '/manufacturers/results' do
+  @search_term = params[:search_term]
+  @manufacturers = Manufacturer.search_manufacturers(params[:search_term])
+  erb(:"manufacturers/results")
+end
+
 get '/manufacturers/:id' do
   @manufacturer = Manufacturer.find(params[:id].to_i)
   erb(:"manufacturers/show")

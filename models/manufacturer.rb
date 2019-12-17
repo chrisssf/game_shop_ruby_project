@@ -75,7 +75,7 @@ attr_accessor :name, :country, :description
   end
 
   def self.search_manufacturers(search_term)
-    search = '%' + search_term + '%'
+    search = ('%' + search_term + '%').downcase
     sql = "SELECT * FROM manufacturers
     WHERE name LIKE $1"
     values = [search]

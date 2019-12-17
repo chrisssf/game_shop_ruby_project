@@ -16,6 +16,21 @@ get '/products/new' do
   erb(:"products/new")
 end
 
+post '/products/results' do
+  @search_term = params[:search_term]
+  @products = Product.search_products((params[:search_term]))
+  erb(:"products/results")
+end
+
+post '/filtered-products/results' do
+  @products = Product.filter_manufacturers(params[:manufacturers_id])
+  product = @products.first
+  if product
+    @search_term = product.manufacturers_name()
+  end
+  erb(:"products/results")
+end
+
 
 get '/products/:id' do
   @product = Product.find(params[:id].to_i)
@@ -25,7 +40,7 @@ end
 post '/products' do
   @product = Product.new(params)
   @product.save()
-  erb(:"products/create")
+  redirect to '/products'
 end
 
 get '/products/:id/edit' do
