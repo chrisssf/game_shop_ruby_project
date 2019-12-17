@@ -8,21 +8,24 @@ Manufacturer.delete_all()
 manufacturer1 = Manufacturer.new({
   'name' => 'Activision',
   'country' => 'USA',
-  'description' => 'American games publisher based in California'
+  'description' => 'American games publisher based in California',
+  'deactivated' => 'no'
   })
 manufacturer1.save()
 
 manufacturer2 = Manufacturer.new({
   'name' => 'EA',
   'country' => 'USA',
-  'description' => 'American games publisher based in California'
+  'description' => 'American games publisher based in California',
+  'deactivated' => 'no'
   })
 manufacturer2.save()
 
 manufacturer3 = Manufacturer.new({
   'name' => 'Square Enix',
   'country' => 'Japan',
-  'description' => 'Japanese games publisher based in Tokyo which is most famous for making RPGs'
+  'description' => 'Japanese games publisher based in Tokyo which is most famous for making RPGs',
+  'deactivated' => 'no'
   })
 manufacturer3.save()
 
@@ -35,7 +38,8 @@ product1 = Product.new ({
   'selling_price' => 50.00,
   'genre' => 'FPS',
   'type' => 'Xbox game',
-  'manufacturers_id' => manufacturer1.id
+  'manufacturers_id' => manufacturer1.id,
+  'deactivated' => 'no'
 })
 product1.save()
 
@@ -47,7 +51,8 @@ product2 = Product.new ({
   'selling_price' => 35.00,
   'genre' => 'Action',
   'type' => 'PS4 game',
-  'manufacturers_id' => manufacturer1.id
+  'manufacturers_id' => manufacturer1.id,
+  'deactivated' => 'no'
 })
 product2.save()
 
@@ -59,7 +64,8 @@ product3 = Product.new ({
   'selling_price' => 60.00,
   'genre' => 'Sports',
   'type' => 'PS4 game',
-  'manufacturers_id' => manufacturer2.id
+  'manufacturers_id' => manufacturer2.id,
+  'deactivated' => 'no'
 })
 product3.save()
 
@@ -71,7 +77,8 @@ product4 = Product.new ({
   'selling_price' => 50.00,
   'genre' => 'RPG',
   'type' => 'PS4 Game',
-  'manufacturers_id' => manufacturer3.id
+  'manufacturers_id' => manufacturer3.id,
+  'deactivated' => 'no'
 })
 product4.save()
 

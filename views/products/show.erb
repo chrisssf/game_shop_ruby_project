@@ -8,6 +8,8 @@
   <p>Genre: <%= @product.genre %></p>
   <p>Type: <%= @product.type %></p>
   <p>Manufacturer_id: <%= @product.manufacturers_id %></p>
+  <p>Deactivated? <%= @product.deactivated.capitalize %></p>
+
 
   <a href="/products/<%= @product.id %>/edit">Edit product details</a>
 

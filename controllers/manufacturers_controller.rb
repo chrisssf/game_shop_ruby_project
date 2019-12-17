@@ -4,7 +4,8 @@ require_relative( '../models/manufacturer.rb' )
 also_reload( '../models/*' )
 
 get '/manufacturers' do
-  @manufacturers = Manufacturer.all()
+  @manufacturers = Manufacturer.search_manufacturers("", "no")
+  # @manufacturers = Manufacturer.all()
   erb ( :"manufacturers/index" )
 end
 
@@ -16,8 +17,14 @@ end
 
 post '/manufacturers/results' do
   @search_term = params[:search_term]
-  @manufacturers = Manufacturer.search_manufacturers(params[:search_term])
+  @manufacturers = Manufacturer.search_manufacturers(params[:search_term], "no")
+  @deactivated_manufacturers = Manufacturer.search_manufacturers(params[:search_term], "yes")
   erb(:"manufacturers/results")
+end
+
+get '/manufacturers/deactivated' do
+  @deactivated_manufacturers = Manufacturer.search_manufacturers("", "yes")
+  erb(:"manufacturers/deactivated")
 end
 
 get '/manufacturers/:id' do

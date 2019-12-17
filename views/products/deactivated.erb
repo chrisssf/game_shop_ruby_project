@@ -1,4 +1,5 @@
-<h1>Here is a list of all active products</h1>
+<h1>DEACTIVATED Products</h1>
+<p>To reactivate go to edit product</p>
 
 <p>filter by manufacturer</p>
 
@@ -25,7 +26,7 @@
     <th>Manufacturer</th>
   </tr>
 
-  <% @products.each do |product| %>
+  <% @deactivated_products.each do |product| %>
     <tr>
       <td><%= product.id %></td>
       <td><a href="/products/<%= product.id %>"><%= product.name %></a> </td>
@@ -45,4 +46,4 @@
     </tr>
     <% end %>
 </table>
-<a href="/products/deactivated">Show deactivated products</a>
+<a href="/products">Show activated products</a>

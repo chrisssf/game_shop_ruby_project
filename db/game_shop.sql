@@ -7,7 +7,8 @@ CREATE TABLE manufacturers
   id SERIAL PRIMARY KEY,
   name VARCHAR(255),
   country VARCHAR(255),
-  description TEXT
+  description TEXT,
+  deactivated VARCHAR(255)
 );
 
 CREATE TABLE products
@@ -20,5 +21,6 @@ CREATE TABLE products
   selling_price FLOAT,
   genre VARCHAR(255),
   type VARCHAR(255),
-  manufacturers_id INT
+  manufacturers_id INT,
+  deactivated VARCHAR(255)
 );

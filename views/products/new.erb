@@ -26,6 +26,9 @@
     <option value="<%= manufacturer.id %>"><%= manufacturer.name.capitalize %></option>
     <% end %>
   </select>
+  <select class="" name="deactivated" id="deactivated" hidden>
+    <option value="no" selected="selected"></option>
+  </select>
   <br>
   <input class ="button" type="submit" value="Add Product">
 </form>

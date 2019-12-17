@@ -1,4 +1,3 @@
-<p>stuff</p>
 
 <p>Searched for: <b><%= @search_term %></b></p>
 
@@ -23,4 +22,31 @@
       </td>
     </tr>
     <% end %>
-</table>
+<%if @deactivated_manufacturers.count > 0 %>
+  </table>
+  <br><br>
+  <h1>DEACTIVATED manufacturers</h1>
+  <p>To reactivate go to edit manufacturer</p>
+  <table>
+    <tr>
+      <th>Manufacturer ID</th>
+      <th>Manufacturer Name</th>
+      <th>Manufacturer Description</th>
+      <th>Country</th>
+    </tr>
+
+    <% @deactivated_manufacturers.each do |manufacturer| %>
+      <tr>
+        <td><%= manufacturer.id %></td>
+        <td><a href="/manufacturers/<%= manufacturer.id %>"><%= manufacturer.name %></a> </td>
+        <td><%= manufacturer.description %></td>
+        <td><%= manufacturer.country %></td>
+        <td class="no-border">
+          <form class="" action="/manufacturers/<%= manufacturer.id %>/edit">
+            <input type="submit" value="Edit this Manufacturer">
+          </form>
+        </td>
+      </tr>
+      <% end %>
+  </table>
+<% end %>

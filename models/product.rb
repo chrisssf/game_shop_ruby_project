@@ -4,7 +4,7 @@ require_relative('./manufacturer')
 class Product
 
   attr_reader :id
-  attr_accessor :name, :description, :stock_quantity, :buying_cost, :selling_price, :genre, :type, :manufacturers_id
+  attr_accessor :name, :description, :stock_quantity, :buying_cost, :selling_price, :genre, :type, :manufacturers_id, :deactivated
 
   def initialize(options)
     @id = options["id"].to_i if options["id"]
@@ -16,6 +16,7 @@ class Product
     @genre = options["genre"]
     @type = options["type"]
     @manufacturers_id = options["manufacturers_id"].to_i
+    @deactivated = options["deactivated"]
   end
 
   def save()
@@ -28,14 +29,15 @@ class Product
       selling_price,
       genre,
       type,
-      manufacturers_id
+      manufacturers_id,
+      deactivated
     )
     VALUES
     (
-      $1, $2, $3, $4, $5, $6, $7, $8
+      $1, $2, $3, $4, $5, $6, $7, $8, $9
     )
     RETURNING id"
-    values = [@name, @description, @stock_quantity, @buying_cost, @selling_price, @genre, @type, @manufacturers_id]
+    values = [@name, @description, @stock_quantity, @buying_cost, @selling_price, @genre, @type, @manufacturers_id, @deactivated]
     result = SqlRunner.run(sql, values)
     id = result.first['id']
     @id = id
@@ -60,6 +62,7 @@ class Product
   end
 
   def update()
+
     sql = "UPDATE products
     SET
     (
@@ -70,13 +73,14 @@ class Product
       selling_price,
       genre,
       type,
-      manufacturers_id
+      manufacturers_id,
+      deactivated
     ) =
     (
-      $1, $2, $3, $4, $5, $6, $7, $8
+      $1, $2, $3, $4, $5, $6, $7, $8, $9
     )
-    WHERE id = $9"
-    values = [@name, @description, @stock_quantity, @buying_cost, @selling_price, @genre, @type, @manufacturers_id, @id]
+    WHERE id = $10"
+    values = [@name, @description, @stock_quantity, @buying_cost, @selling_price, @genre, @type, @manufacturers_id, @deactivated, @id]
     SqlRunner.run(sql, values)
   end
 
@@ -103,20 +107,20 @@ class Product
     end
   end
 
-  def self.search_products(search_term)
+  def self.search_products(search_term, deactivated)
     search = ('%' + search_term + '%').downcase
     sql = "SELECT * FROM products
-    WHERE name LIKE $1"
-    values = [search]
+    WHERE name LIKE $1 AND deactivated = $2"
+    values = [search, deactivated]
     results = SqlRunner.run(sql, values)
     return results.map { |product| Product.new(product) }
   end
 
-  def self.filter_manufacturers(manufacturer_id)
+  def self.filter_manufacturers(manufacturer_id, deactivated)
     search = manufacturer_id.to_i
     sql = "SELECT * FROM products
-    WHERE manufacturers_id = $1"
-    values = [search]
+    WHERE manufacturers_id = $1 AND deactivated = $2"
+    values = [search, deactivated]
     results = SqlRunner.run(sql, values)
     return results.map { |product| Product.new(product) }
   end

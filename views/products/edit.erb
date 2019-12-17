@@ -27,5 +27,11 @@
     <% end %>
   </select>
   <br>
+  <label for="deactivated">Deactivated? </label>
+  <select class="form_margin" name="deactivated" id="deactivated">
+    <option value="no" <% if @product.deactivated == "no" %> selected="selected" <% end %> >No</option>
+    <option value="yes" <% if @product.deactivated == "yes" %> selected="selected" <% end %> >Yes</option>
+  </select>
+  <br>
   <input class ="button" type="submit" value="Update this Product">
 </form>

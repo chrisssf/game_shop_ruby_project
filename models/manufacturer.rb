@@ -4,13 +4,14 @@ require_relative('../db/sql_runner')
 class Manufacturer
 
 attr_reader :id
-attr_accessor :name, :country, :description
+attr_accessor :name, :country, :description, :deactivated
 
   def initialize(options)
     @id = options["id"].to_i if options["id"]
     @name = options["name"].downcase
     @country = options["country"]
     @description = options["description"]
+    @deactivated = options["deactivated"]
   end
 
   def save()
@@ -18,14 +19,15 @@ attr_accessor :name, :country, :description
     (
       name,
       country,
-      description
+      description,
+      deactivated
     )
     VALUES
     (
-      $1, $2, $3
+      $1, $2, $3, $4
     )
     RETURNING id"
-    values = [@name, @country, @description]
+    values = [@name, @country, @description, @deactivated]
     result = SqlRunner.run(sql, values)
     id = result.first['id']
     @id = id
@@ -55,13 +57,14 @@ attr_accessor :name, :country, :description
     (
       name,
       country,
-      description
+      description,
+      deactivated
     ) =
     (
-      $1, $2, $3
+      $1, $2, $3, $4
     )
-    WHERE id = $4"
-    values =[@name, @country, @description, @id]
+    WHERE id = $5"
+    values =[@name, @country, @description, @deactivated, @id]
     SqlRunner.run(sql, values)
   end
 
@@ -74,11 +77,11 @@ attr_accessor :name, :country, :description
     return manufacturer
   end
 
-  def self.search_manufacturers(search_term)
+  def self.search_manufacturers(search_term, deactivated)
     search = ('%' + search_term + '%').downcase
     sql = "SELECT * FROM manufacturers
-    WHERE name LIKE $1"
-    values = [search]
+    WHERE name LIKE $1 AND deactivated = $2"
+    values = [search, deactivated]
     results = SqlRunner.run(sql, values)
     return results.map { |manufacturer| Manufacturer.new(manufacturer) }
   end
