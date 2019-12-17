@@ -1,0 +1,13 @@
+td, th {
+  padding: 10px;
+  text-align: center;
+  border: 1px solid black;
+}
+
+.no-border {
+  border: 0px solid black;
+}
+
+.form_margin{
+  margin-bottom: 20px;
+}
