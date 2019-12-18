@@ -11,10 +11,10 @@
 
   <% @manufacturers.each do |manufacturer| %>
     <tr>
-      <td><%= manufacturer.id %></td>
+      <td><a href="/manufacturers/<%= manufacturer.id %>"><%= manufacturer.id %></a></td>
       <td><a href="/manufacturers/<%= manufacturer.id %>"><%= manufacturer.name %></a> </td>
-      <td><%= manufacturer.description %></td>
-      <td><%= manufacturer.country %></td>
+      <td><a href="/manufacturers/<%= manufacturer.id %>"><%= manufacturer.description %></a></td>
+      <td><a href="/manufacturers/<%= manufacturer.id %>"><%= manufacturer.country %></a></td>
       <td class="no-border">
         <form class="" action="/manufacturers/<%= manufacturer.id %>/edit">
           <input type="submit" value="Edit this Manufacturer">
@@ -37,10 +37,10 @@
 
     <% @deactivated_manufacturers.each do |manufacturer| %>
       <tr>
-        <td><%= manufacturer.id %></td>
+        <td><a href="/manufacturers/<%= manufacturer.id %>"><%= manufacturer.id %></a></td>
         <td><a href="/manufacturers/<%= manufacturer.id %>"><%= manufacturer.name %></a> </td>
-        <td><%= manufacturer.description %></td>
-        <td><%= manufacturer.country %></td>
+        <td><a href="/manufacturers/<%= manufacturer.id %>"><%= manufacturer.description %></a></td>
+        <td><a href="/manufacturers/<%= manufacturer.id %>"><%= manufacturer.country %></a></td>
         <td class="no-border">
           <form class="" action="/manufacturers/<%= manufacturer.id %>/edit">
             <input type="submit" value="Edit this Manufacturer">

@@ -1,17 +1,19 @@
-<h1>DEACTIVATED Products</h1>
-<p>To reactivate go to edit product</p>
+<div class="products">
 
-<p>filter by manufacturer</p>
+  <h1>DEACTIVATED Products</h1>
+  <p>To reactivate go to edit product</p>
 
-<form class="" action="/filtered-products/results" method="post">
-  <select class="form_margin" name="manufacturers_id" id="manufacturer-select">
-    <% @manufacturers.each do |manufacturer| %>
-    <option value="<%= manufacturer.id %>"><%= manufacturer.name %></option>
-    <% end %>
-  </select>
-  <input type="submit" value="Find Products by this Manufacturer">
-</form><br><br><br>
+  <p>filter by manufacturer</p>
 
+  <form class="" action="/filtered-products/results" method="post">
+    <select class="form_margin" name="manufacturers_id" id="manufacturer-select">
+      <% @manufacturers.each do |manufacturer| %>
+      <option value="<%= manufacturer.id %>"><%= manufacturer.name %></option>
+      <% end %>
+    </select>
+    <input type="submit" value="Find Products by this Manufacturer" class="myButton">
+  </form>
+</div>
 <table>
   <tr>
     <th>Product ID</th>
@@ -28,16 +30,16 @@
 
   <% @deactivated_products.each do |product| %>
     <tr>
-      <td><%= product.id %></td>
+      <td><a href="/products/<%= product.id %>"><%= product.id %></a></td>
       <td><a href="/products/<%= product.id %>"><%= product.name %></a> </td>
-      <td><%= product.description %></td>
-      <td><%= product.stock_quantity %><%= product.stock_status %></td>
-      <td>£ <%= '%.2f' % product.buying_cost %></td>
-      <td>£ <%= '%.2f' % product.selling_price %></td>
-      <td>£ <%= '%.2f' % product.markup %></td>
-      <td><%= product.genre %></td>
-      <td><%= product.type %></td>
-      <td><%= product.manufacturers_name %></td>
+      <td><a href="/products/<%= product.id %>"><%= product.description %></a></td>
+      <td><a href="/products/<%= product.id %>"><%= product.stock_quantity %><%= product.stock_status %></a></td>
+      <td><a href="/products/<%= product.id %>">£ <%= '%.2f' % product.buying_cost %></a></td>
+      <td><a href="/products/<%= product.id %>">£ <%= '%.2f' % product.selling_price %></a></td>
+      <td><a href="/products/<%= product.id %>">£ <%= '%.2f' % product.markup %></a></td>
+      <td><a href="/products/<%= product.id %>"><%= product.genre %></a></td>
+      <td><a href="/products/<%= product.id %>"><%= product.type %></a></td>
+      <td><a href="/products/<%= product.id %>"><%= product.manufacturers_name %></a></td>
       <td class="no-border">
         <form class="" action="/products/<%= product.id %>/edit">
           <input type="submit" value="Edit this Product">
