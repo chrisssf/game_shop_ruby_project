@@ -119,3 +119,13 @@ input[type="submit"] {
   padding-top: 30px;
   padding-bottom: 30px;
 }
+
+.show p {
+  display: block;
+  font-size: 19px;
+}
+
+select {
+  font-size: 19px;
+  margin-left: 10px;
+}

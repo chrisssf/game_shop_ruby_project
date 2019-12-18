@@ -1,9 +1,9 @@
-<div class="">
+<div class="show">
   <h1><%= @manufacturer.name %></h1>
-  <p>Manufacturer ID: <%= @manufacturer.id %></p>
-  <p>Description: <%= @manufacturer.description %></p>
-  <p>Country: <%= @manufacturer.country %></p>
-  <p>Deactivated? <%= @manufacturer.deactivated.capitalize %></p>
+  <p><b>Manufacturer ID:</b> <%= @manufacturer.id %></p>
+  <p><b>Description: </b><%= @manufacturer.description %></p>
+  <p><b>Country: </b><%= @manufacturer.country %></p>
+  <p><b>Deactivated? </b><%= @manufacturer.deactivated.capitalize %></p>
 
 
   <a href="/manufacturers/<%= @manufacturer.id %>/edit">Edit manufacturer details</a>

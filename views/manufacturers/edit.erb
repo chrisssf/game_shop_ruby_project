@@ -2,7 +2,7 @@
   <div class="add">
     <form class="" action="/manufacturers/<%= @manufacturer.id %>" method="post">
       <label for="name">Name: </label>
-      <input class="form_margin" type="text" name="name" id="name" value="<%= @manufacturer.name %>">
+      <input class="form_margin" type="text" name="name" id="name" value="<%= @manufacturer.name %>" required>
       <br>
       <label for="description">Description: </label>
       <input class="form_margin" type="text" name="description" id="description" value="<%= @manufacturer.description %>">

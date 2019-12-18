@@ -5,13 +5,10 @@ also_reload( '../models/*' )
 
 get '/manufacturers' do
   @manufacturers = Manufacturer.search_manufacturers("", "no")
-  # @manufacturers = Manufacturer.all()
   erb ( :"manufacturers/index" )
 end
 
 get '/manufacturers/new' do
-  # @products = Product.all()
-  # @manufacturers = Manufacturer.all()
   erb(:"manufacturers/new")
 end
 
@@ -35,7 +32,7 @@ end
 post '/manufacturers' do
   @manufacturer = Manufacturer.new(params)
   @manufacturer.save()
-  erb(:"manufacturers/create")
+  redirect to '/manufacturers'
 end
 
 get '/manufacturers/:id/edit' do

@@ -6,7 +6,8 @@
   <p>filter by manufacturer</p>
 
   <form class="" action="/filtered-products/results" method="post">
-    <select class="form_margin" name="manufacturers_id" id="manufacturer-select">
+    <select class="form_margin" name="manufacturers_id" id="manufacturer-select" required>
+      <option value="" disabled selected hidden>Select Manufacturer</option>
       <% @manufacturers.each do |manufacturer| %>
       <option value="<%= manufacturer.id %>"><%= manufacturer.name %></option>
       <% end %>
